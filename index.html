@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="index.css">
+   <title>ToDo</title>
+</head>
+<body>
+   <div class="banner">
+      <h1 id="Title">ToDo List</h1>
+   </div>
+
+   <div class="content">
+      <form onsubmit="return validate()">
+         <fieldset>
+            <legend>ToDo List</legend>
+            <table>
+               <tr>
+                  <td>
+                     <input type="text" id="name" name="name" size="80" class="input" placeholder="Task Name">
+                  </td>
+               </tr>
+
+               <tr>
+                  <td>
+                     <textarea name="details" id="details" placeholder="Task Details" rows="8" cols="65" class="input"></textarea>
+                  </td>
+               </tr>
+
+               <tr>
+                  <td><input type="date" name="endDate" id="endDate"></td>
+               </tr>
+
+               <tr>
+                  <td><input type="submit" value="Add New Task"></td>
+                  <td><button type="button" onclick="goToTasks()">View Tasks</button></td>
+               </tr>
+            </table>
+         </fieldset>
+      </form>
+   </div>
+
+   <script>
+      function validate() {
+         const name = document.getElementById('name').value.trim();
+         const details = document.getElementById('details').value.trim();
+         const endDate = document.getElementById('endDate').value.trim();
+
+         if (!name || !details || !endDate) {
+            alert("All fields are required!");
+            return false;
+         }
+
+         saveTask(name, details, endDate);
+         return true;
+      }
+
+      function saveTask(name, details, endDate) {
+         const task = { name, details, endDate };
+         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+         tasks.push(task);
+         localStorage.setItem('tasks', JSON.stringify(tasks));
+      }
+
+      function goToTasks() {
+         window.location.href = 'tasks.html';
+      }
+   </script>
+</body>
+</html>
