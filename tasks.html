@@ -1,53 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="index.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <title>Tasks</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Tasks</title>
 </head>
+
 <body onload="displayTasks()">
-   <div class="banner">
-      <h1 id="Title">ToDo List</h1>
-   </div>
+  <div class="banner">
+    <h1 id="Title">ToDo List</h1>
+  </div>
 
-   <div id="main"></div>
-   <div style="text-align: center; margin-top: 20px;">
-      <button onclick="goToForm()">Add New Task</button>
-   </div>
+  <div id="main"></div>
+  <div style="text-align: center; margin-top: 20px;">
+    <button onclick="goToForm()">Add New Task</button>
+  </div>
 
-   <script>
-      function displayTasks() {
-         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-         const mainDiv = document.getElementById('main');
-         mainDiv.innerHTML = '';
-
-         tasks.forEach((task, index) => {
-            const taskDiv = document.createElement('div');
-            taskDiv.className = 'note';
-            taskDiv.innerHTML = `
-               <h1>${task.name}</h1>
-               <p>${task.details}</p>
-               <p>${task.endDate}</p>
-               <button class="check" onclick="resolveTask(${index})">
-                  <i class="fa fa-check"></i>
-               </button>
-            `;
-            mainDiv.appendChild(taskDiv);
-         });
-      }
-
-      function resolveTask(index) {
-         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-         tasks.splice(index, 1); // Remove the task at the specified index
-         localStorage.setItem('tasks', JSON.stringify(tasks));
-         displayTasks(); // Refresh the task list
-      }
-
-      function goToForm() {
-         window.location.href = 'index.html';
-      }
-   </script>
+  <script>
+  </script>
 </body>
+
 </html>
